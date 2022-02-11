@@ -11,6 +11,21 @@
             <span>Nuevo usuario</span>
         @endif
     </h3>
+    <div class="col m12 l6 center-align">
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>Imagen</span>
+                <input type="file" name="imagen">
+            </div>
+            @if ($row->imagen)
+                <div class="card-image">
+                    {{ Html::image('img/'.$row->imagen, $row->titulo) }}
+                </div>
+            @endif
+            <div class="card-content">
+                @if (!$row->imagen)
+                    <i class="grey-text material-icons medium">image</i>
+                @endif
     <div class="row">
         @php $accion = ($row->id) ? "actualizar/".$row->id : "guardar" @endphp
         <form class="col m12 l6" method="POST" action="{{ url("admin/usuarios/".$accion) }}">

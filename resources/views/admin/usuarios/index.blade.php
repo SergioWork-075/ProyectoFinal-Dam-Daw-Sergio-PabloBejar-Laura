@@ -28,6 +28,15 @@
             <article class="col s12 l6">
                 <div class="card horizontal  sticky-action admin">
                     <div class="card-stacked">
+                        @if ($row->imagen)
+                            <div class="card-image">
+                                {{ Html::image('img/'.$row->imagen, $row->titulo) }}
+                            </div>
+                        @endif
+                        <div class="card-content">
+                            @if (!$row->imagen)
+                                <i class="grey-text material-icons medium">image</i>
+                            @endif
                         <div class="card-content">
                             <i class="material-icons medium">person</i>
                             <h4>

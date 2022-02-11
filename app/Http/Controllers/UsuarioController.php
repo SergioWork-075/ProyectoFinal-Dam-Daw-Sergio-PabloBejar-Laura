@@ -63,6 +63,7 @@ class UsuarioController extends Controller
             'password' => Hash::make($request->password),
             'usuarios' => ($request->usuarios) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
+            'imagen' => $request->imagen,
         ]);
 
         return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> creado');
@@ -102,6 +103,18 @@ class UsuarioController extends Controller
             'usuarios' => ($request->usuarios) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
         ]);
+
+        //Imagen
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $nombre = $archivo->getClientOriginalExtension();
+            $archivo->move(public_path()."/img/", $nombre);
+            Usuario::where('id', $row->id)->update(['imagen' => $nombre]);
+            $texto = " e imagen subida.";
+        }
+        else{
+            $texto = ".";
+        }
 
         return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado');
     }
