@@ -11,26 +11,12 @@
             <span>Nuevo usuario</span>
         @endif
     </h3>
-    <div class="col m12 l6 center-align">
-        <div class="file-field input-field">
-            <div class="btn">
-                <span>Imagen</span>
-                <input type="file" name="imagen">
-            </div>
-            @if ($row->imagen)
-                <div class="card-image">
-                    {{ Html::image('img/'.$row->imagen, $row->titulo) }}
-                </div>
-            @endif
-            <div class="card-content">
-                @if (!$row->imagen)
-                    <i class="grey-text material-icons medium">image</i>
-                @endif
     <div class="row">
         @php $accion = ($row->id) ? "actualizar/".$row->id : "guardar" @endphp
         <form class="col m12 l6" method="POST" action="{{ url("admin/usuarios/".$accion) }}">
             @csrf
             <div class="row">
+
                 <div class="input-field col s12">
                     <input id="nombre" type="text" name="nombre" value="{{ $row->nombre }}">
                     <label for="nombre">Nombre</label>
@@ -39,6 +25,7 @@
                     <input id="email" type="text" name="email" value="{{ $row->email }}">
                     <label for="email">E-mail</label>
                 </div>
+
                 @php $clase = ($row->id) ? "hide" : "" @endphp
                 <div class="input-field col s12 {{ $clase }}" id="password">
                     <input id="password" type="password" name="password" value="">
@@ -54,6 +41,19 @@
                 @else
                     <input type="hidden" name="cambiar_clave" value="1">
                 @endif
+                <div class="col m3 l3 center-align">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>Imagen</span>
+                            <input type="file" name="imagen">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    @if ($row->imagen)
+                        {{ Html::image('img/'.$row->imagen, $row->titulo, ['class' => 'responsive-img']) }}
+                    @endif
             </div>
             <div class="row">
                 <p>Permisos</p>
@@ -80,6 +80,7 @@
                     </button>
                 </div>
             </div>
+
         </form>
     </div>
 @endsection

@@ -65,6 +65,17 @@ class UsuarioController extends Controller
             'noticias' => ($request->noticias) ? 1 : 0,
             'imagen' => $request->imagen,
         ]);
+        //Imagen
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $nombre = $archivo->getClientOriginalExtension();
+            $archivo->move(public_path()."/img/", $nombre);
+            Usuario::where('id', $row->id)->update(['imagen' => $nombre]);
+            $texto = " e imagen subida.";
+        }
+        else{
+            $texto = ".";
+        }
 
         return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> creado');
     }
@@ -147,6 +158,12 @@ class UsuarioController extends Controller
         $row = Usuario::findOrFail($id);
 
         Usuario::destroy($row->id);
+
+        //Borrar imagen
+        $imagen = public_path()."/img/".$row->imagen;
+        if (file_exists($imagen)){
+            unlink($imagen);
+        }
 
         return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$row->nombre.'</strong> borrado');
     }
