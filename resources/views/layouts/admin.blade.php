@@ -41,6 +41,11 @@
                         <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
                     </li>
                 @endif
+                @if( Auth::user()->partidas )
+                    <li>
+                        <a href="{{ url('admin/partidas') }}" title="Partidas">Partidas</a>
+                    </li>
+                @endif
                 @if( Auth::user()->usuarios )
                     <li>
                         <a href="{{ url('admin/usuarios') }}" title="Usuarios">Usuarios</a>

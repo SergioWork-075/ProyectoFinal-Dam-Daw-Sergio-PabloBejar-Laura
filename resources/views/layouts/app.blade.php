@@ -39,6 +39,9 @@
                 <a href="{{ route('noticias') }}" title="Noticias">Noticias</a>
             </li>
             <li>
+                <a href="{{ route('partidas') }}" title="Partidas">Partidas</a>
+            </li>
+            <li>
                 <a href="{{ route('acerca-de') }}" title="Acerca de">Acerca de</a>
             </li>
             <li>
