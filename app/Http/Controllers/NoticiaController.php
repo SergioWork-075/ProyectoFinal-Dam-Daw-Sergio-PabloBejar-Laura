@@ -52,7 +52,7 @@ class NoticiaController extends Controller
      * @param  \App\Http\Requests\NoticiaRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(NoticiaRequest $request)
+    public function guardar(NoticixaRequest $request)
     {
         $row = Noticia::create([
             'titulo' => $request->titulo,
@@ -62,11 +62,10 @@ class NoticiaController extends Controller
             'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
             'autor' => $request->autor,
         ]);
-
         //Imagen
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
-            $nombre = $archivo->getClientOriginalExtension();
+            $nombre = $archivo->getClientOriginalName();
             $archivo->move(public_path()."/img/", $nombre);
             Noticia::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";
@@ -117,7 +116,7 @@ class NoticiaController extends Controller
         //Imagen
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
-            $nombre = $archivo->getClientOriginalExtension();
+            $nombre = $archivo->getClientOriginalName();
             $archivo->move(public_path()."/img/", $nombre);
             Noticia::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";

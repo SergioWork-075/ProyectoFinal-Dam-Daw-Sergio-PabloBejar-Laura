@@ -13,7 +13,7 @@
     </h3>
     <div class="row">
         @php $accion = ($row->id) ? "actualizar/".$row->id : "guardar" @endphp
-        <form class="col m12 l6" method="POST" action="{{ url("admin/usuarios/".$accion) }}">
+        <form class="col m12 l6" method="POST" enctype="multipart/form-data" action="{{ url("admin/usuarios/".$accion) }}">
             @csrf
             <div class="row">
 

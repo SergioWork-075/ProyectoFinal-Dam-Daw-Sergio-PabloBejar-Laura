@@ -57,18 +57,17 @@ class UsuarioController extends Controller
      */
     public function guardar(UsuarioRequest $request)
     {
-        Usuario::create([
+      $row =  Usuario::create([
             'nombre' => $request->nombre,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'usuarios' => ($request->usuarios) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
-            'imagen' => $request->imagen,
         ]);
         //Imagen
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
-            $nombre = $archivo->getClientOriginalExtension();
+            $nombre = $archivo->getClientOriginalName();
             $archivo->move(public_path()."/img/", $nombre);
             Usuario::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";
@@ -118,7 +117,7 @@ class UsuarioController extends Controller
         //Imagen
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
-            $nombre = $archivo->getClientOriginalExtension();
+            $nombre = $archivo->getClientOriginalName();
             $archivo->move(public_path()."/img/", $nombre);
             Usuario::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";
@@ -126,8 +125,7 @@ class UsuarioController extends Controller
         else{
             $texto = ".";
         }
-
-        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado');
+        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado'.$texto);
     }
 
     /**
