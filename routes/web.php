@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\NoticiaController;
 Route::get('/', [AppController::class, 'index'])->name('home');
 Route::get('noticias', [AppController::class, 'noticias'])->name('noticias');
 Route::get('noticia/{slug}', [AppController::class, 'noticia'])->name('noticia');
+Route::get('partidas', [AppController::class, 'partidas'])->name('partidas');
+Route::get('partida/{slug}', [AppController::class, 'partida'])->name('partida');
 Route::get('acerca-de', [AppController::class, 'acercade'])->name('acerca-de');
 
 //Back-end
@@ -51,6 +54,11 @@ Route::post('autenticar', [AuthController::class, 'autenticar'])->name('autentic
 Route::get('registro', [AuthController::class, 'registro'])->name('registro');
 Route::post('registrarse', [AuthController::class, 'registrarse'])->name('registrarse');
 Route::post('salir', [AuthController::class, 'salir'])->name('salir');
+
+//API Noticias
+Route::get('mostrar', [ApiController::class, 'mostrar'])->name('mostrar');
+Route::get('leer', [ApiController::class, 'leer'])->name('leer');
+Route::get('registrar', [ApiController::class, 'registrar'])->name('registrar');
 
 //Ruta por defecto (si no encuentra otra antes)
 Route::any('{query}', function() { return redirect('/'); })->where('query', '.*');

@@ -1,8 +1,15 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Partida
+class Partida extends Model
 {
+    use HasFactory;
 
+
+    protected $fillable = [
+        'usuario', 'slug', 'puntos', 'tiempo', 'fecha', 'imagen'
+    ];
 }

@@ -7,21 +7,22 @@
 
         @foreach ($rowset as $row)
 
-            <article class="col m12 l6">
+            <article class="col m6 l3">
                 <div class="card horizontal small">
+                    @foreach ($imagenJoin as $img)
                     <div class="card-image">
-                        {{ Html::image('img/'.$row->imagen, $row->titulo) }}
+                        {{ Html::image('img/'.$img->imagen, $img->titulo) }}
                     </div>
+                    @endforeach
                     <div class="card-stacked">
                         <div class="card-content">
-                            <h4>{{ $row->titulo  }}</h4>
-                            <p>{{ $row->entradilla  }}</p>
+
+                            <h4>{{ $row->usuario  }}</h4>
+                            <p>Puntuación: {{ $row->puntos  }}</p>
+                            <p>Tiempo: {{ $row->tiempo  }}</p>
                         </div>
                         <div class="card-info">
                             <p>{{ date("d/m/Y", strtotime($row->fecha)) }}</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="{{ url('noticia/'.$row->slug) }}">Más información</a>
                         </div>
                     </div>
                 </div>
