@@ -106,6 +106,7 @@
                 Usuario: <strong>{{Auth::user()->nombre}}</strong>
             </h2>
 
+
         @else
 
             <h2>Bienvenido, introduce tus datos.</h2>

@@ -112,6 +112,33 @@ class UsuarioController extends Controller
             'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
             'usuarios' => ($request->usuarios) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
+
+        ]);
+
+        //Imagen
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move(public_path()."/img/", $nombre);
+            Usuario::where('id', $row->id)->update(['imagen' => $nombre]);
+            $texto = " e imagen subida.";
+        }
+        else{
+            $texto = ".";
+        }
+        return redirect('admin')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado'.$texto);
+    }
+  public function personalizar(UsuarioRequest $request, $id)
+    {
+        $row = Usuario::findOrFail($id);
+
+        Usuario::where('id', $row->id)->update([
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
+            'usuarios' => ($request->usuarios) ? 1 : 0,
+            'noticias' => ($request->noticias) ? 1 : 0,
+
         ]);
 
         //Imagen

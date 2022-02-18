@@ -19,7 +19,9 @@ class AppController extends Controller
     public function index()
     {
         //Obtengo las noticias a mostrar en la home
-        $rowset = Partida::orderBy('tiempo', 'ASC')->get();
+        $rowset = Partida::orderBy('tiempo', 'ASC')
+            ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->get();
 
       /*  $usuarioJoin =DB::table('partidas')
             ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')
@@ -27,6 +29,7 @@ class AppController extends Controller
             ->get();*/
 
         $imagenJoin =Partida::select('usuarios.imagen')->
+
             join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
             ->get();
         foreach ($imagenJoin as $imagen){
@@ -36,7 +39,7 @@ class AppController extends Controller
         return view('app.index',[
             'rowset' => $rowset,
             //'usuarioJoin' => $usuarioJoin,
-            'imagenJoin' => $imagenJoin
+
         ]);
     }
 

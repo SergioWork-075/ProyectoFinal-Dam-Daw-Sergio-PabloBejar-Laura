@@ -25,7 +25,6 @@
                     <input id="email" type="text" name="email" value="{{ $row->email }}">
                     <label for="email">E-mail</label>
                 </div>
-
                 @php $clase = ($row->id) ? "hide" : "" @endphp
                 <div class="input-field col s12 {{ $clase }}" id="password">
                     <input id="password" type="password" name="password" value="">
@@ -80,7 +79,7 @@
                     </button>
                 </div>
             </div>
-
+            </div>
         </form>
     </div>
 @endsection

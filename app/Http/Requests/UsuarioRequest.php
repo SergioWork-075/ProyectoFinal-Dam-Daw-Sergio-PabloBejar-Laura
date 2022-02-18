@@ -36,7 +36,6 @@ class UsuarioRequest extends FormRequest
         if ($request->cambiar_clave) {
             $rules['password'] = 'required|min:8|max:16';
         }
-
         return $rules;
 
     }

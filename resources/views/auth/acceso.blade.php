@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <h3>Acceso</h3>
     <div class="row">
         <form class="col m12 l6" method="POST" action="{{ route('autenticar') }}">

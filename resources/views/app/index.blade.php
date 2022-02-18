@@ -6,14 +6,11 @@
     <div class="row">
 
         @foreach ($rowset as $row)
-
-            <article class="col m6 l3">
+            <article class="col m6 l6">
                 <div class="card horizontal small">
-                    @foreach ($imagenJoin as $img)
                     <div class="card-image">
-                        {{ Html::image('img/'.$img->imagen, $img->titulo) }}
+                        {{ Html::image('img/'.$row->imagen, $row->titulo) }}
                     </div>
-                    @endforeach
                     <div class="card-stacked">
                         <div class="card-content">
 
