@@ -8,13 +8,17 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #d4fdfd;
 }
 
 nav{
-    background-color: #333;
+    background-color: #2121DE;
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
+    border: 2px solid #1919A6;
+    border-radius: 3px;
+    font-weight: bold;
 }
 
 nav img{
@@ -41,7 +45,9 @@ header h2{
 }
 
 footer{
-    background-color: #333;
+    background-color: #2121DE;
+    border: 2px solid #1919A6;
+    border-radius: 3px;
     color: white;
     padding: 1rem 0;
 }
