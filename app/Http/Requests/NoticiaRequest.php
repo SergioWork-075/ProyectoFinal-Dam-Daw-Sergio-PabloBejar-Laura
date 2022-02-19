@@ -25,7 +25,6 @@ class NoticiaRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-
         //Título requerido, máximo 32 caracteres
         //Slug máximo 36 caracteres (no requerido porque se generaría solo)
         //Entradilla máximo 128 caracteres (no requerida)
@@ -34,7 +33,6 @@ class NoticiaRequest extends FormRequest
             'slug' => 'max:36',
             'entradilla' => 'max:128',
         ];
-
         return $rules;
 
     }

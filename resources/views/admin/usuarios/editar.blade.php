@@ -13,10 +13,10 @@
     </h3>
     <div class="row">
         @php $accion = ($row->id) ? "actualizar/".$row->id : "guardar" @endphp
-        <form class="col m12 l6" method="POST" enctype="multipart/form-data" action="{{ url("admin/usuarios/".$accion) }}">
+        <form class="col m12 l6" method="POST" enctype="multipart/form-data"
+              action="{{ url("admin/usuarios/".$accion) }}">
             @csrf
             <div class="row">
-
                 <div class="input-field col s12">
                     <input id="nombre" type="text" name="nombre" value="{{ $row->nombre }}">
                     <label for="nombre">Nombre</label>
@@ -53,32 +53,34 @@
                     @if ($row->imagen)
                         {{ Html::image('img/'.$row->imagen, $row->titulo, ['class' => 'responsive-img']) }}
                     @endif
-            </div>
-            <div class="row">
-                <p>Permisos</p>
-                <p>
-                    <label for="noticias">
-                        <input id="noticias" name="noticias" type="checkbox" {{ ($row->noticias == 1) ? "checked" : "" }}>
-                        <span>Noticias</span>
-                    </label>
-                </p>
-                <p>
-                    <label for="usuarios">
-                        <input id="usuarios" name="usuarios" type="checkbox" {{ ($row->usuarios == 1) ? "checked" : "" }}>
-                        <span>Usuarios</span>
-                    </label>
-                </p>
-                <div class="input-field col s12">
-                    <a href="{{ url("admin/usuarios") }}" title="Volver">
-                        <button class="btn waves-effect waves-light" type="button">Volver
-                            <i class="material-icons right">replay</i>
-                        </button>
-                    </a>
-                    <button class="btn waves-effect waves-light" type="submit" name="guardar">Guardar
-                        <i class="material-icons right">save</i>
-                    </button>
                 </div>
-            </div>
+                <div class="row">
+                    <p>Permisos</p>
+                    <p>
+                        <label for="noticias">
+                            <input id="noticias" name="noticias"
+                                   type="checkbox" {{ ($row->noticias == 1) ? "checked" : "" }}>
+                            <span>Noticias</span>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="usuarios">
+                            <input id="usuarios" name="usuarios"
+                                   type="checkbox" {{ ($row->usuarios == 1) ? "checked" : "" }}>
+                            <span>Usuarios</span>
+                        </label>
+                    </p>
+                    <div class="input-field col s12">
+                        <a href="{{ url("admin/usuarios") }}" title="Volver">
+                            <button class="btn waves-effect waves-light" type="button">Volver
+                                <i class="material-icons right">replay</i>
+                            </button>
+                        </a>
+                        <button class="btn waves-effect waves-light" type="submit" name="guardar">Guardar
+                            <i class="material-icons right">save</i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

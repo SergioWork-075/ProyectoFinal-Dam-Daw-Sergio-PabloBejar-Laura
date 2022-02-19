@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Noticias de Harry Potter') }}</title>
+    <title>{{ config('app.name', 'El Pacman') }}</title>
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('home') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/logo.svg', 'Logo Harry Potter') }}
+            {{ Html::image('img/pacman.svg', 'Logo Harry Potter') }}
         </a>
 
         <!--Botón menú móviles-->
@@ -34,9 +34,6 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
                 <a href="{{ route('home') }}" title="Inicio">Inicio</a>
-            </li>
-            <li>
-                <a href="{{ route('noticias') }}" title="Noticias">Noticias</a>
             </li>
             <li>
                 <a href="{{ route('partidas') }}" title="Partidas">Partidas</a>
@@ -60,9 +57,6 @@
         <a href="{{ route('home') }}" title="Inicio">Inicio</a>
     </li>
     <li>
-        <a href="{{ route('noticias') }}" title="Noticias">Noticias</a>
-    </li>
-    <li>
         <a href="{{ route('partidas') }}" title="Partidas">Partidas</a>
     </li>
     <li>
@@ -78,8 +72,8 @@
 <main>
 
     <header>
-        <h1>Mi primer CMS</h1>
-        <h2>con Laravel</h2>
+        <h1>El juego de Pacman</h1>
+        <h2>Disfruta del videojuego más aclamado por la crítica</h2>
     </header>
 
     <section class="container-fluid">

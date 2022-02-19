@@ -33,7 +33,7 @@
                                 <i>{{ Html::image('img/icon.png') }}</i>
                             @endif
                             @if ($row->imagen)
-                            <i>{{ Html::image('img/'.$row->imagen, $row->titulo) }}</i>
+                                <i>{{ Html::image('img/'.$row->imagen, $row->titulo) }}</i>
                             @endif
                             <h4>
                                 {{ $row->nombre }}

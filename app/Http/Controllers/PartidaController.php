@@ -102,6 +102,34 @@ class PartidaController extends Controller
      */
     public function actualizar(PartidaRequest $request, $id)
     {
+        echo "Hola";
+        $row = Partida::findOrFail($id);
+
+        Partida::where('id', $row->id)->update([
+            'titulo' => $request->titulo,
+            'entradilla' => $request->entradilla,
+            'slug' => $this->getSlug($request->titulo),
+            'texto' => $request->texto,
+            'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
+            'autor' => $request->autor,
+        ]);
+
+        //Imagen
+        if ($request->hasFile('imagen')) {
+            $archivo = $request->file('imagen');
+            $nombre = $archivo->getClientOriginalName();
+            $archivo->move(public_path()."/img/", $nombre);
+            Partida::where('id', $row->id)->update(['imagen' => $nombre]);
+            $texto = " e imagen subida.";
+        }
+        else{
+            $texto = ".";
+        }
+        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->titulo.'</strong> guardada'.$texto);
+    }
+   public function personalizar(PartidaRequest $request, $id)
+    {
+        echo "Hola";
         $row = Partida::findOrFail($id);
 
         Partida::where('id', $row->id)->update([

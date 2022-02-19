@@ -8,15 +8,15 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #d4fdfd;
+    background-color: #ffffff;
 }
 
 nav{
-    background-color: #2121DE;
+    background-color: #595959;
     box-shadow: none;
     -webkit-box-shadow: none;
     padding: 0 2rem;
-    border: 2px solid #1919A6;
+    border: 2px solid #888888;
     border-radius: 3px;
     font-weight: bold;
 }
@@ -45,8 +45,8 @@ header h2{
 }
 
 footer{
-    background-color: #2121DE;
-    border: 2px solid #1919A6;
+    background-color: #6b6b6b;
+    border: 2px solid #464646;
     border-radius: 3px;
     color: white;
     padding: 1rem 0;

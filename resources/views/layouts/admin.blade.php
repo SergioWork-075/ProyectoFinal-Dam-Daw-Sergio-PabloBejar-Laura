@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('acceder') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/logo.svg', 'Logo Harry Potter') }}
+            {{ Html::image('img/pacman.svg', 'Logo Pacman') }}
         </a>
 
         <!--Botón menú móviles-->
@@ -34,13 +34,8 @@
         <!--Menú de navegación-->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
+                    <a href="{{ route('home') }}" title="Inicio">Inicio</a>
                 </li>
-                @if( Auth::user()->noticias )
-                    <li>
-                        <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
-                    </li>
-                @endif
                 @if( Auth::user()->partidas )
                     <li>
                         <a href="{{ url('admin/partidas') }}" title="Partidas">Partidas</a>
@@ -71,9 +66,9 @@
         <li>
             <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
         </li>
-        @if( Auth::user()->noticias )
+        @if( Auth::user()->partidas )
             <li>
-                <a href="{{ url('admin/noticias') }}" title="Noticias">Noticias</a>
+                <a href="{{ url('admin/partidas') }}" title="Noticias">Partidas</a>
             </li>
         @endif
         @if( Auth::user()->usuarios )

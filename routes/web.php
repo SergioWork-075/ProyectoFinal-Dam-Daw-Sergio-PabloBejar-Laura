@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\NoticiaController;
+use App\Http\Controllers\PartidaController;
 use App\Http\Controllers\ApiController;
 
 /*
@@ -48,6 +49,16 @@ Route::post('admin/noticias/actualizar/{id}', [NoticiaController::class, 'actual
 Route::get('admin/noticias/activar/{id}', [NoticiaController::class, 'activar'])->middleware('role:noticias');
 Route::get('admin/noticias/home/{id}', [NoticiaController::class, 'home'])->middleware('role:noticias');
 Route::get('admin/noticias/borrar/{id}', [NoticiaController::class, 'borrar'])->middleware('role:noticias');
+
+Route::get('admin', [AdminController::class, 'index'])->name('admin');
+Route::get('admin/partidas', [PartidaController::class, 'index'])->middleware('role:partidas');
+Route::get('admin/partidas/crear', [NoticiaController::class, 'crear'])->middleware('role:partidas');
+Route::post('admin/partidas/guardar', [NoticiaController::class, 'guardar'])->middleware('role:partidas');
+Route::get('admin/partidas/editar/{id}', [NoticiaController::class, 'editar'])->middleware('role:partidas');
+Route::post('admin/partidas/actualizar/{id}', [NoticiaController::class, 'actualizar'])->middleware('role:partidas');
+Route::get('admin/partidas/activar/{id}', [NoticiaController::class, 'activar'])->middleware('role:partidas');
+Route::get('admin/partidas/home/{id}', [NoticiaController::class, 'home'])->middleware('role:partidas');
+Route::get('admin/partidas/borrar/{id}', [NoticiaController::class, 'borrar'])->middleware('role:partidas');
 
 //Auth
 Route::get('acceder', [AuthController::class, 'acceder'])->name('acceder');

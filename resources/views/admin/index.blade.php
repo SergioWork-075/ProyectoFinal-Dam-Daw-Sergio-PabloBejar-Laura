@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('content')
     <h3>
         <a href="{{ route("admin") }}" title="Inicio">Inicio</a> <span>| </span>
@@ -7,14 +6,14 @@
     </h3>
     <div class="row">
         @php $accion = (Auth::user()->id) ? "personalizar/".Auth::user()->id : "guardar" @endphp
-        <form class="col m12 l6" method="POST" enctype="multipart/form-data" action="{{ url("admin/usuarios/".$accion) }}">
+        <form class="col m12 l6" method="POST" enctype="multipart/form-data"
+              action="{{ url("admin/usuarios/".$accion) }}">
             @csrf
             <div class="row">
                 <div class="input-field col s12">
                     <input id="nombre" type="text" name="nombre" value="{{ Auth::user()->nombre }}">
                     <label for="nombre">Nombre</label>
                 </div>
-
                 @php $clase = (Auth::user()->id) ? "hide" : "" @endphp
                 <div class="input-field col s12 {{ $clase }}" id="password">
                     <input id="password" type="password" name="password" value="">
@@ -40,18 +39,30 @@
                             <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    @if (Auth::user()->id)
+                    @if (Auth::user()->imagen)
                         {{ Html::image('img/'.Auth::user()->imagen, Auth::user()->titulo, ['class' => 'responsive-img']) }}
                     @endif
                 </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <a href="{{ url("/index.php") }}" title="Volver">
+                            <button class="btn waves-effect waves-light" type="button">Volver
+                                <i class="material-icons right">replay</i>
+                            </button>
+                        </a>
+                        <button class="btn waves-effect waves-light" type="submit" name="guardar">Guardar
+                            <i class="material-icons right">save</i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="guardar">Guardar
-                <i class="material-icons right">save</i>
-            </button>
         </form>
-
     </div>
 @endsection
+
+
+
+
 
 
 

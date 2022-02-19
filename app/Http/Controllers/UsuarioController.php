@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\UsuarioRequestPersonalizar;
+
 
 class UsuarioController extends Controller
 {
@@ -112,7 +114,6 @@ class UsuarioController extends Controller
             'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
             'usuarios' => ($request->usuarios) ? 1 : 0,
             'noticias' => ($request->noticias) ? 1 : 0,
-
         ]);
 
         //Imagen
@@ -128,19 +129,14 @@ class UsuarioController extends Controller
         }
         return redirect('admin')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado'.$texto);
     }
-  public function personalizar(UsuarioRequest $request, $id)
+    public function personalizar(UsuarioRequestPersonalizar $request, $id)
     {
+        echo "Hola11";
         $row = Usuario::findOrFail($id);
-
         Usuario::where('id', $row->id)->update([
             'nombre' => $request->nombre,
-            'email' => $request->email,
             'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
-            'usuarios' => ($request->usuarios) ? 1 : 0,
-            'noticias' => ($request->noticias) ? 1 : 0,
-
-        ]);
-
+            ]);
         //Imagen
         if ($request->hasFile('imagen')) {
             $archivo = $request->file('imagen');
@@ -152,7 +148,7 @@ class UsuarioController extends Controller
         else{
             $texto = ".";
         }
-        return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado'.$texto);
+        return redirect('admin')->with('success', 'Usuario <strong>'.$request->nombre.'</strong> guardado'.$texto);
     }
 
     /**

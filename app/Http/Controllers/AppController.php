@@ -18,29 +18,7 @@ class AppController extends Controller
     }*/
     public function index()
     {
-        //Obtengo las noticias a mostrar en la home
-        $rowset = Partida::orderBy('tiempo', 'ASC')
-            ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
-            ->get();
-
-      /*  $usuarioJoin =DB::table('partidas')
-            ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')
-            ->select('partidas.usuario')
-            ->get();*/
-
-        $imagenJoin =Partida::select('usuarios.imagen')->
-
-            join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
-            ->get();
-        foreach ($imagenJoin as $imagen){
-            echo $imagen->imagen;
-
-        }
-        return view('app.index',[
-            'rowset' => $rowset,
-            //'usuarioJoin' => $usuarioJoin,
-
-        ]);
+        return view('app.index');
     }
 
     public function noticias()
@@ -64,11 +42,24 @@ class AppController extends Controller
     }
     public function partidas()
     {
-        //Obtengo las noticias a mostrar en el listado de noticias
-        $rowset = Partida::orderBy('tiempo', 'ASC')->get();
+        //Obtengo las noticias a mostrar en la home
+        $rowset = Partida::orderBy('tiempo', 'ASC')
+            ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->get();
 
+        /*  $usuarioJoin =DB::table('partidas')
+              ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')
+              ->select('partidas.usuario')
+              ->get();*/
+
+        $imagenJoin =Partida::select('usuarios.imagen')->
+
+        join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->get();
         return view('app.partidas',[
             'rowset' => $rowset,
+            //'usuarioJoin' => $usuarioJoin,
+
         ]);
     }
 

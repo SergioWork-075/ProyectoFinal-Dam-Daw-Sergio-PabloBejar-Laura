@@ -31,12 +31,22 @@ class UsuarioRequest extends FormRequest
             'nombre' => 'required|max:255',
             'email' => 'required|regex:/^.+@.+$/i|unique:usuarios,email,'.$request->id.'|max:255',
         ];
-
         //Si estoy cambiando la clave (o es nuevo), password requerido y entre 8 y 16 caracteres
         if ($request->cambiar_clave) {
             $rules['password'] = 'required|min:8|max:16';
         }
         return $rules;
-
+    }
+    public function rulesPersonalizar(Request $personalizar) {
+        //Nombre requerido y máximo 255 caracteres
+        //Email requerido, válido, único en la tabla usuarios y máximo 255 caracteres
+        $rules = [
+            'nombre' => 'required|max:255',
+        ];
+        //Si estoy cambiando la clave (o es nuevo), password requerido y entre 8 y 16 caracteres
+        if ($personalizar->cambiar_clave) {
+            $rules['password'] = 'required|min:8|max:16';
+        }
+        return $rules;
     }
 }
