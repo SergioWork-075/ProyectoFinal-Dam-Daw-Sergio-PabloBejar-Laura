@@ -162,12 +162,9 @@ class UsuarioController extends Controller
         $row = Usuario::findOrFail($id);
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivado" : "activado";
-
         Usuario::where('id', $row->id)->update(['activo' => $valor]);
-
         return redirect('admin/usuarios')->with('success', 'Usuario <strong>'.$row->name.'</strong> '.$texto.'.');
     }
-
     /**
      * Borrar elemento.
      *

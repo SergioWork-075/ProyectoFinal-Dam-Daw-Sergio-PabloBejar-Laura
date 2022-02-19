@@ -23,9 +23,11 @@ class PartidaController extends Controller
      */
     public function index()
     {
-        //Obtengo todas las partidas ordenadas por fecha más reciente
-        $rowset = Partida::orderBy("fecha","DESC")->get();
 
+        //Obtengo las noticias a mostrar en la home
+        $rowset = Partida::orderBy('tiempo', 'ASC')
+            ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->get();
         return view('admin.partidas.index',[
             'rowset' => $rowset,
         ]);
@@ -45,7 +47,6 @@ class PartidaController extends Controller
             'row' => $row,
         ]);
     }
-
     /**
      * Guardar un nuevo elemento en la bbdd
      *
@@ -55,12 +56,11 @@ class PartidaController extends Controller
     public function guardar(PartidaRequest $request)
     {
         $row = Partida::create([
-            'titulo' => $request->titulo,
-            'entradilla' => $request->entradilla,
-            'slug' => $this->getSlug($request->titulo),
-            'texto' => $request->texto,
+            'usuario' => $request->usuario,
+            'slug' => $this->getSlug($request->usuario),
+            'puntos' => $request->puntos,
+            'tiempo' => $request->tiempo,
             'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
-            'autor' => $request->autor,
         ]);
         //Imagen
         if ($request->hasFile('imagen')) {
@@ -70,11 +70,10 @@ class PartidaController extends Controller
             Partida::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";
         }
-        else{
+       else{
             $texto = ".";
         }
-
-        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->titulo.'</strong> creada'.$texto);
+        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->usuario.'</strong> creada'.$texto);
     }
 
     /**
@@ -87,7 +86,6 @@ class PartidaController extends Controller
     {
         //Obtengo la Partida o muestro error
         $row = Partida::where('id', $id)->firstOrFail();
-
         return view('admin.partidas.editar',[
             'row' => $row,
         ]);
@@ -102,7 +100,6 @@ class PartidaController extends Controller
      */
     public function actualizar(PartidaRequest $request, $id)
     {
-        echo "Hola";
         $row = Partida::findOrFail($id);
 
         Partida::where('id', $row->id)->update([
@@ -127,51 +124,23 @@ class PartidaController extends Controller
         }
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->titulo.'</strong> guardada'.$texto);
     }
-   public function personalizar(PartidaRequest $request, $id)
-    {
-        echo "Hola";
-        $row = Partida::findOrFail($id);
-
-        Partida::where('id', $row->id)->update([
-            'titulo' => $request->titulo,
-            'entradilla' => $request->entradilla,
-            'slug' => $this->getSlug($request->titulo),
-            'texto' => $request->texto,
-            'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
-            'autor' => $request->autor,
-        ]);
-
-        //Imagen
-        if ($request->hasFile('imagen')) {
-            $archivo = $request->file('imagen');
-            $nombre = $archivo->getClientOriginalName();
-            $archivo->move(public_path()."/img/", $nombre);
-            Partida::where('id', $row->id)->update(['imagen' => $nombre]);
-            $texto = " e imagen subida.";
-        }
-        else{
-            $texto = ".";
-        }
-
-        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->titulo.'</strong> guardada'.$texto);
-    }
-
     /**
      * Activar o desactivar elemento.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function activar($id)
     {
+        echo "Hola";
         $row = Partida::findOrFail($id);
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivada" : "activada";
-
-        Partida::where('id', $row->id)->update(['activo' => $valor]);
-
+        Partida::where('partidas.id', $row->id)->update(['partidas.activo' => $valor]);
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> '.$texto.'.');
     }
+
 
     /**
      * Mostrar o no elemento en la home.

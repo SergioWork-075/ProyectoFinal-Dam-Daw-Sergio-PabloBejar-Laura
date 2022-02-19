@@ -43,23 +43,16 @@ class AppController extends Controller
     public function partidas()
     {
         //Obtengo las noticias a mostrar en la home
-        $rowset = Partida::orderBy('tiempo', 'ASC')
+        $rowset =Partida::orderBy('tiempo', 'ASC')
             ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->where('partidas.activo', 0)
             ->get();
-
         /*  $usuarioJoin =DB::table('partidas')
               ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')
               ->select('partidas.usuario')
               ->get();*/
-
-        $imagenJoin =Partida::select('usuarios.imagen')->
-
-        join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
-            ->get();
         return view('app.partidas',[
             'rowset' => $rowset,
-            //'usuarioJoin' => $usuarioJoin,
-
         ]);
     }
 

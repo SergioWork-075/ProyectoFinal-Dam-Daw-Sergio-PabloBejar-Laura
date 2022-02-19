@@ -139,9 +139,7 @@ class NoticiaController extends Controller
         $row = Noticia::findOrFail($id);
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivada" : "activada";
-
         Noticia::where('id', $row->id)->update(['activo' => $valor]);
-
         return redirect('admin/noticias')->with('success', 'Noticia <strong>'.$row->titulo.'</strong> '.$texto.'.');
     }
 

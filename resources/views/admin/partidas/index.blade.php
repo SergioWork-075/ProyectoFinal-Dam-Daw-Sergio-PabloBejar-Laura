@@ -1,7 +1,5 @@
 @extends('layouts.admin')
-
 @section('content')
-
     <h3>
         <a href="{{ route("admin") }}" title="Inicio">Inicio</a> <span>| partidas</span>
     </h3>
