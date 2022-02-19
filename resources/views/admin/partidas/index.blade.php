@@ -53,13 +53,6 @@
                             <a href="{{ url("admin/partidas/activar/".$row->id) }}" title="{{ $title }}">
                                 <i class="{{ $color }} material-icons">{{ $icono }}</i>
                             </a>
-                            @php
-                                $title = ($row->home == 1) ? "Quitar de la home" : "Mostrar en la home";
-                                $color = ($row->home == 1) ? "green-text" : "red-text";
-                            @endphp
-                            <a href="{{ url("admin/partidas/home/".$row->id) }}" title="{{ $title }}">
-                                <i class="{{ $color }} material-icons">home</i>
-                            </a>
                             <a href="#" class="activator" title="Borrar">
                                 <i class="material-icons">delete</i>
                             </a>

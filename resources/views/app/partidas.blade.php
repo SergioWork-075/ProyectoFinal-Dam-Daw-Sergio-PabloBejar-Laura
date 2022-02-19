@@ -7,8 +7,8 @@
     <p>Clasificación de las mejores partidas</p>
         @foreach ($rowset as $row)
             <article class="col m6 l6">
-                <div class="card horizontal small">
-                    <div class="card-image">
+                <div class="card horizontal small" style="background-color: #ffffff">
+                    <div class="card-image" style="margin-left: 2%;">
                         @if (!$row->imagen)
                             {{ Html::image('img/icon.png') }}
                         @endif
@@ -19,9 +19,9 @@
                     <div class="card-stacked">
                         <div class="card-content">
 
-                            <h4>{{ $row->usuario  }}</h4>
-                            <p>Puntuación: {{ $row->puntos  }}</p>
-                            <p>Tiempo: {{ $row->tiempo  }}</p>
+                            <h3 style="color: #000000">{{ $row->usuario  }}</h3>
+                            <h4 style="color: #ff9100">Puntuación: {{ $row->puntos  }}</h4>
+                            <h4>Tiempo: {{ $row->tiempo  }}</h4>
                         </div>
                         <div class="card-info">
                             <p>{{ date("d/m/Y", strtotime($row->fecha)) }}</p>

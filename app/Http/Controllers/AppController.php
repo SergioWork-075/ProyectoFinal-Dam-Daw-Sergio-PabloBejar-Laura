@@ -45,7 +45,7 @@ class AppController extends Controller
         //Obtengo las noticias a mostrar en la home
         $rowset =Partida::orderBy('tiempo', 'ASC')
             ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
-            ->where('partidas.activo', 0)
+            ->where('partidas.activo', 1)
             ->get();
         /*  $usuarioJoin =DB::table('partidas')
               ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')

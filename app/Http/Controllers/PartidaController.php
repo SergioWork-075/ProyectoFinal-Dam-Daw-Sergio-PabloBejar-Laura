@@ -61,6 +61,7 @@ class PartidaController extends Controller
             'puntos' => $request->puntos,
             'tiempo' => $request->tiempo,
             'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
+            'activo' => $request->activo
         ]);
         //Imagen
         if ($request->hasFile('imagen')) {
@@ -103,12 +104,12 @@ class PartidaController extends Controller
         $row = Partida::findOrFail($id);
 
         Partida::where('id', $row->id)->update([
-            'titulo' => $request->titulo,
-            'entradilla' => $request->entradilla,
+            'usuario' => $request->titulo,
             'slug' => $this->getSlug($request->titulo),
-            'texto' => $request->texto,
+            'puntos' => $request->puntos,
+            'tiempo' => $request->tiempo,
             'fecha' => \DateTime::createFromFormat("d-m-Y", $request->fecha)->format("Y-m-d H:i:s"),
-            'autor' => $request->autor,
+            'activo' => $request->activo
         ]);
 
         //Imagen
@@ -133,29 +134,10 @@ class PartidaController extends Controller
 
     public function activar($id)
     {
-        echo "Hola";
         $row = Partida::findOrFail($id);
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivada" : "activada";
-        Partida::where('partidas.id', $row->id)->update(['partidas.activo' => $valor]);
-        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> '.$texto.'.');
-    }
-
-
-    /**
-     * Mostrar o no elemento en la home.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function home($id)
-    {
-        $row = Partida::findOrFail($id);
-        $valor = ($row->home) ? 0 : 1;
-        $texto = ($row->home) ? "no se muestra en la home" : "se muestra en la home";
-
-        Partida::where('id', $row->id)->update(['home' => $valor]);
-
+        Partida::where('id', $row->id)->update(['activo' => $valor]);
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> '.$texto.'.');
     }
 
@@ -168,15 +150,7 @@ class PartidaController extends Controller
     public function borrar($id)
     {
         $row = Partida::findOrFail($id);
-
         Partida::destroy($row->id);
-
-        //Borrar imagen
-        $imagen = public_path()."/img/".$row->imagen;
-        if (file_exists($imagen)){
-            unlink($imagen);
-        }
-
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> borrada.');
     }
 

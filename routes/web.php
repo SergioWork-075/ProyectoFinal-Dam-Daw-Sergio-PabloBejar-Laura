@@ -39,6 +39,17 @@ Route::post('admin/usuarios/personalizar/{id}', [UsuarioController::class, 'pers
 Route::get('admin/usuarios/activar/{id}', [UsuarioController::class, 'activar'])->middleware('role:usuarios');
 Route::get('admin/usuarios/borrar/{id}', [UsuarioController::class, 'borrar'])->middleware('role:usuarios');
 
+
+Route::get('admin', [AdminController::class, 'index'])->name('admin');
+Route::get('admin/partidas', [PartidaController::class, 'index'])->middleware('role:partidas');
+Route::get('admin/partidas/crear', [PartidaController::class, 'crear'])->middleware('role:partidas');
+Route::post('admin/partidas/guardar', [PartidaController::class, 'guardar'])->middleware('role:partidas');
+Route::get('admin/partidas/editar/{id}', [PartidaController::class, 'editar'])->middleware('role:partidas');
+Route::post('admin/partidas/actualizar/{id}', [PartidaController::class, 'actualizar'])->middleware('role:partidas');
+Route::get('admin/partidas/activar/{id}', [PartidaController::class, 'activar'])->middleware('role:partidas');
+Route::get('admin/partidas/home/{id}', [PartidaController::class, 'home'])->middleware('role:partidas');
+Route::get('admin/partidas/borrar/{id}', [PartidaController::class, 'borrar'])->middleware('role:partidas');
+
 //Back-end
 Route::get('admin', [AdminController::class, 'index'])->name('admin');
 Route::get('admin/noticias', [NoticiaController::class, 'index'])->middleware('role:noticias');
@@ -50,15 +61,6 @@ Route::get('admin/noticias/activar/{id}', [NoticiaController::class, 'activar'])
 Route::get('admin/noticias/home/{id}', [NoticiaController::class, 'home'])->middleware('role:noticias');
 Route::get('admin/noticias/borrar/{id}', [NoticiaController::class, 'borrar'])->middleware('role:noticias');
 
-Route::get('admin', [AdminController::class, 'index'])->name('admin');
-Route::get('admin/partidas', [PartidaController::class, 'index'])->middleware('role:partidas');
-Route::get('admin/partidas/crear', [PartidaController::class, 'crear'])->middleware('role:partidas');
-Route::post('admin/partidas/guardar', [PartidaController::class, 'guardar'])->middleware('role:partidas');
-Route::get('admin/partidas/editar/{id}', [PartidaController::class, 'editar'])->middleware('role:partidas');
-Route::post('admin/partidas/actualizar/{id}', [PartidaController::class, 'actualizar'])->middleware('role:partidas');
-Route::get('admin/partidas/activar/{id}', [PartidaController::class, 'activar'])->middleware('role:partidas');
-Route::get('admin/partidas/home/{id}', [PartidaController::class, 'home'])->middleware('role:partidas');
-Route::get('admin/partidas/borrar/{id}', [PartidaController::class, 'borrar'])->middleware('role:partidas');
 
 //Auth
 Route::get('acceder', [AuthController::class, 'acceder'])->name('acceder');

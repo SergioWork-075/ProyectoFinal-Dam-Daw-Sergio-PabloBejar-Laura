@@ -23,7 +23,7 @@
 <nav>
     <div class="nav-wrapper">
         <!--Logo-->
-        <a href="{{ route('acceder') }}" class="brand-logo" title="Inicio">
+        <a href="{{ route('home') }}" class="brand-logo" title="Inicio">
             {{ Html::image('img/pacman.svg', 'Logo Pacman') }}
         </a>
 
@@ -34,7 +34,7 @@
         <!--Menú de navegación-->
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
-                    <a href="{{ route('home') }}" title="Inicio">Inicio</a>
+                    <a href="{{ route('admin') }}" title="Inicio">Inicio</a>
                 </li>
                 @if( Auth::user()->partidas )
                     <li>
