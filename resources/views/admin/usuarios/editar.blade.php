@@ -57,10 +57,10 @@
                 <div class="row">
                     <p>Permisos</p>
                     <p>
-                        <label for="noticias">
-                            <input id="noticias" name="noticias"
-                                   type="checkbox" {{ ($row->noticias == 1) ? "checked" : "" }}>
-                            <span>Noticias</span>
+                        <label for="partidas">
+                            <input id="partidas" name="partidas"
+                                   type="checkbox" {{ ($row->partidas == 1) ? "checked" : "" }}>
+                            <span>Partidas</span>
                         </label>
                     </p>
                     <p>

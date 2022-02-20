@@ -131,16 +131,14 @@ class PartidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function activar($id)
     {
         $row = Partida::findOrFail($id);
         $valor = ($row->activo) ? 0 : 1;
         $texto = ($row->activo) ? "desactivada" : "activada";
         Partida::where('id', $row->id)->update(['activo' => $valor]);
-        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> '.$texto.'.');
+        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->usuario.'</strong> '.$texto.'.');
     }
-
     /**
      * Borrar elemento (e imagen asociada si existe).
      *
@@ -153,10 +151,8 @@ class PartidaController extends Controller
         Partida::destroy($row->id);
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> borrada.');
     }
-
     //Función para generar el slug a partir de un string
     public function getSlug($str){
-
         //Quito acentos y caracteres extraños
         $a = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë',
             'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø',

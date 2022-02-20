@@ -1,5 +1,4 @@
-@extends('layouts.admin')
-
+@extends('layouts.app')
 @section('content')
     <h3>Acceso</h3>
     <div class="row">

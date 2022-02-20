@@ -68,7 +68,7 @@
         </li>
         @if( Auth::user()->partidas )
             <li>
-                <a href="{{ url('admin/partidas') }}" title="Noticias">Partidas</a>
+                <a href="{{ url('admin/partidas') }}" title="Partidas">Partidas</a>
             </li>
         @endif
         @if( Auth::user()->usuarios )
@@ -120,9 +120,9 @@
 
 <!--Footer-->
 <footer class="center-align">
-    © <?php echo date("Y") ?> Panel de Administración.
-    <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón">
-        Jairo García Rincón
+    <a
+    href="http://15.188.80.158/ProyectoFinal-Dam-Daw-Sergio-PabloBejar-Laura/public/index.php"  title="Desarrolladores Pacman">
+        © <?php echo date("Y") ?> Panel de Administración.  Desarrolladores de pacman
     </a>
 </footer>
 

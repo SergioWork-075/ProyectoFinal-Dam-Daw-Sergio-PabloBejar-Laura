@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="title" content="Noticias de Harry Potter">
+    <meta name="title" content="Partidas de Pacman">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('home') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/pacman.svg', 'Logo Harry Potter') }}
+            {{ Html::image('img/pacman.svg', 'Logo Pacman') }}
         </a>
 
         <!--Botón menú móviles-->
@@ -42,7 +42,7 @@
                 <a href="{{ route('acerca-de') }}" title="Acerca de">Acerca de</a>
             </li>
             <li>
-                <a href="{{ route('admin') }}" title="Panel de administración" target="_blank" class="grey-text">
+                <a href="{{ route('admin') }}" title="Panel de administración"  class="grey-text">
                     Admin
                 </a>
             </li>
@@ -50,7 +50,6 @@
 
     </div>
 </nav>
-
 <!--Menú de navegación móvil-->
 <ul class="sidenav" id="mobile-demo">
     <li>
@@ -84,19 +83,14 @@
     <!--Footer-->
     </section>
 </main>
-
 <footer class="center-align">
-    © <?php echo date("Y") ?>
-    <a href="https://jairogarciarincon.com" target="_blank" title="Jairo García Rincón">
-        Jairo García Rincón
+    <a href="http://15.188.80.158/ProyectoFinal-Dam-Daw-Sergio-PabloBejar-Laura/public/index.php/acerca-de" title="Pacman">
+        © <?php echo date("Y") ?>   Pacman
     </a>
 </footer>
-
 </body>
-
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
-
 </html>

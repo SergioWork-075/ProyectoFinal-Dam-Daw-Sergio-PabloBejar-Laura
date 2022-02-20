@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Noticia;
+
 use App\Models\Partida;
+use App\Models\Noticia;
 use Illuminate\Support\Facades\DB;
 
 class AppController extends Controller
@@ -46,23 +47,25 @@ class AppController extends Controller
         $rowset =Partida::orderBy('tiempo', 'ASC')
             ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
             ->where('partidas.activo', 1)
+             ->where('usuarios.activo',1 )
             ->get();
-        /*  $usuarioJoin =DB::table('partidas')
-              ->join('usuarios', 'usuarios.nombre', '=', 'partidas.usuario')
-              ->select('partidas.usuario')
-              ->get();*/
         return view('app.partidas',[
             'rowset' => $rowset,
         ]);
     }
-
     public function partida($slug)
     {
         //Obtengo la noticia o muestro error
         $row = Partida::where('slug', $slug)->firstOrFail();
 
+        $imagenJoin = Partida::
+
+            join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+               ->where('slug', $slug)
+        ->get();
         return view('app.partida',[
             'row' => $row,
+           'imagenJoin'=>$imagenJoin,
         ]);
     }
     public function acercade()

@@ -27,18 +27,18 @@
                 <div class="card horizontal  sticky-action admin">
                     <div class="card-stacked">
                         @if ($row->imagen)
-                            <div class="card-image">
-                                {{ Html::image('img/'.$row->imagen, $row->titulo) }}
-                            </div>
+                            <i>{{ Html::image('img/'.$row->imagen, $row->titulo) }}</i>
                         @endif
                         <div class="card-content">
                             @if (!$row->imagen)
-                                <i class="grey-text material-icons medium">image</i>
+                                <i>{{ Html::image('img/icon.png') }}</i>
                             @endif
                             <h4>
                                 {{ $row->titulo }}
                             </h4>
-                            <strong>URL amigable:</strong> {{ $row->slug }}<br>
+                            <strong>Usuario:</strong> {{ $row->usuario }}<br>
+                            <strong>Puntos:</strong> {{ $row->puntos }}<br>
+                            <strong>tiempo:</strong> {{ $row->tiempo}}<br>
                             <strong>Fecha:</strong> {{ date("d/m/Y", strtotime($row->fecha)) }}
                         </div>
                         <div class="card-action">

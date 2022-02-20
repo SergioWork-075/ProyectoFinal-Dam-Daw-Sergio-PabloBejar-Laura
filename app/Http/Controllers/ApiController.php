@@ -28,7 +28,6 @@ class ApiController extends Controller
                 'imagen' => asset("img/".$row->imagen)
             ];
         }
-
         //Devuelvo JSON
         return response()->json(
             $noticias, //Array de objetos

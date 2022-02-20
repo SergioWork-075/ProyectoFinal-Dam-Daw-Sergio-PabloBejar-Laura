@@ -64,7 +64,7 @@ class UsuarioController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'usuarios' => ($request->usuarios) ? 1 : 0,
-            'noticias' => ($request->noticias) ? 1 : 0,
+            'partidas' => ($request->partidas) ? 1 : 0,
         ]);
         //Imagen
         if ($request->hasFile('imagen')) {
@@ -113,7 +113,7 @@ class UsuarioController extends Controller
             'email' => $request->email,
             'password' => ($request->cambiar_clave) ? Hash::make($request->password) : $row->password,
             'usuarios' => ($request->usuarios) ? 1 : 0,
-            'noticias' => ($request->noticias) ? 1 : 0,
+            'partidas' => ($request->partidas) ? 1 : 0,
         ]);
 
         //Imagen

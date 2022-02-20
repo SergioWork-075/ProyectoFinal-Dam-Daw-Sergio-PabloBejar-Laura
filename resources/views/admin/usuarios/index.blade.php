@@ -35,11 +35,11 @@
                             @if ($row->imagen)
                                 <i>{{ Html::image('img/'.$row->imagen, $row->titulo) }}</i>
                             @endif
-                            <h4>
-                                {{ $row->nombre }}
-                            </h4>
+                            <h5>
+                                <strong>Correo: </strong> {{ $row->email }}
+                            </h5>
                             <strong>Usuarios: </strong>{{ ($row->usuarios) ? "Sí" : "No" }}<br>
-                            <strong>Noticias: </strong>{{ ($row->noticias) ? "Sí" : "No" }}
+                            <strong>Partidas: </strong>{{ ($row->partidas) ? "Sí" : "No" }}
                         </div>
                         <div class="card-action">
                             <a href="{{ url("admin/usuarios/editar/".$row->id) }}" title="Editar">
