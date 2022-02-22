@@ -42,17 +42,6 @@
                             <strong>Fecha:</strong> {{ date("d/m/Y", strtotime($row->fecha)) }}
                         </div>
                         <div class="card-action">
-                            <a href="{{ url("admin/partidas/editar/".$row->id) }}" title="Editar">
-                                <i class="material-icons">edit</i>
-                            </a>
-                            @php
-                                $title = ($row->activo == 1) ? "Desactivar" : "Activar";
-                                $color = ($row->activo == 1) ? "green-text" : "red-text";
-                                $icono = ($row->activo == 1) ? "mood" : "mood_bad";
-                            @endphp
-                            <a href="{{ url("admin/partidas/activar/".$row->id) }}" title="{{ $title }}">
-                                <i class="{{ $color }} material-icons">{{ $icono }}</i>
-                            </a>
                             <a href="#" class="activator" title="Borrar">
                                 <i class="material-icons">delete</i>
                             </a>
@@ -62,7 +51,7 @@
                     <div class="card-reveal">
                         <span class="card-title grey-text text-darken-4">Borrar partida<i class="material-icons right">close</i></span>
                         <p>
-                            ¿Está seguro de que quiere borrar la partida<strong>{{ $row->titulo }}</strong>?<br>
+                            ¿Está seguro de que quiere borrar la partida de<strong>{{ $row->usuario }}</strong>?<br>
                             Esta acción no se puede deshacer.
                         </p>
                         <a href="{{ url("admin/partidas/borrar/".$row->id) }}" title="Borrar">

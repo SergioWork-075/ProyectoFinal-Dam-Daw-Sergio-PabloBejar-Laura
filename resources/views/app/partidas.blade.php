@@ -3,8 +3,8 @@
 @section('content')
 
     <h3>Inicio</h3>
-    <div class="row">
     <p>Clasificación de las mejores partidas</p>
+    <div class="row">
         @foreach ($rowset as $row)
             <article class="col m6 l6">
                 <div class="card horizontal small" style="background-color: #ffffff">
@@ -25,6 +25,9 @@
                         </div>
                         <div class="card-info">
                             <p>{{ date("d/m/Y", strtotime($row->fecha)) }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{{ url('partida/'.$row->slug) }}">Más información</a>
                         </div>
                     </div>
                 </div>

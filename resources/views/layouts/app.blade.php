@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <!--Metas-->
@@ -19,7 +20,6 @@
 </head>
 
 <body>
-
 <nav>
     <div class="nav-wrapper">
         <!--Logo-->
@@ -56,6 +56,9 @@
         <a href="{{ route('home') }}" title="Inicio">Inicio</a>
     </li>
     <li>
+        <a href="{{ route('admin') }}" title="Mis Partidas">Mis Partidas</a>
+    </li>
+    <li>
         <a href="{{ route('partidas') }}" title="Partidas">Partidas</a>
     </li>
     <li>
@@ -67,7 +70,7 @@
         </a>
     </li>
 </ul>
-
+@include('admin.partials.mensajes')
 <main>
 
     <header>

@@ -41,6 +41,9 @@
                         <a href="{{ url('admin/partidas') }}" title="Partidas">Partidas</a>
                     </li>
                 @endif
+                    <li>
+                        <a href="{{ url('admin/partidas/misPartidas/'.Auth::user()->slug) }}" title="Mis Partidas">Mis Partidas</a>
+                    </li>
                 @if( Auth::user()->usuarios )
                     <li>
                         <a href="{{ url('admin/usuarios') }}" title="Usuarios">Usuarios</a>

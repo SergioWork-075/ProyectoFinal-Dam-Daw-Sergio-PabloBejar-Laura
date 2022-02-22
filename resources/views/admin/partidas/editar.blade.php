@@ -25,6 +25,15 @@
                     <input id="puntos" type="text" name="puntos" value="{{ $row->puntos }}">
                     <label for="puntos">Puntos</label>
                 </div>
+          <div class="input-field col s12">
+                    <input id="tiempo" type="text" name="tiempo" value="{{ $row->tiempo }}">
+                    <label for="tiempo">Tiempo</label>
+                </div>
+                <div class="input-field col s12">
+                    @php $fecha = ($row->fecha) ? date("d-m-Y", strtotime($row->fecha)) : date("d-m-Y") @endphp
+                    <input id="fecha" type="text" name="fecha" class="datepicker" value="{{ $fecha }}">
+                    <label for="fecha">Fecha</label>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <a href="{{ url("admin/partidas") }}" title="Volver">

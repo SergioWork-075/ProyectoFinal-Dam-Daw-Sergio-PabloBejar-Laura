@@ -55,9 +55,8 @@ class AuthController extends Controller
         ]);
 
         //Despues del registro, hago el login
-        Auth::login($usuario);
-
-        return redirect("admin")->withSuccess('Te has registrado correctamente. Bienvenido');
+        //Auth::login($usuario);
+        return redirect("home")->withSuccess('Te has registrado correctamente. Esperando la confirmación del Administrador');
     }
 
     public function salir(Request $request)
@@ -65,6 +64,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('admin');
     }
 }

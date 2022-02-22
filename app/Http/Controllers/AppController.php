@@ -53,15 +53,14 @@ class AppController extends Controller
             'rowset' => $rowset,
         ]);
     }
+
     public function partida($slug)
     {
         //Obtengo la noticia o muestro error
         $row = Partida::where('slug', $slug)->firstOrFail();
-
         $imagenJoin = Partida::
-
             join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
-               ->where('slug', $slug)
+            ->where('partidas.slug', $slug)
         ->get();
         return view('app.partida',[
             'row' => $row,

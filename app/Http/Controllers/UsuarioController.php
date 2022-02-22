@@ -131,7 +131,6 @@ class UsuarioController extends Controller
     }
     public function personalizar(UsuarioRequestPersonalizar $request, $id)
     {
-        echo "Hola11";
         $row = Usuario::findOrFail($id);
         Usuario::where('id', $row->id)->update([
             'nombre' => $request->nombre,

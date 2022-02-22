@@ -8,7 +8,7 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: #3f489a;
+    background-color: #ffffff;
 }
 
 nav{
@@ -70,12 +70,12 @@ section h3{
 }
 
 section h3 a{
-    color: white;
+    color: #333;
 }
 
 section h3 span{
     font-weight:normal;
-    color: white;
+    color: #444;
 }
 
 .btn{
@@ -102,19 +102,6 @@ article .card-info{
 
 .card.horizontal.small .card-image img{
     margin-top: 20%;
-}
-
-.card.horizontal.noticia{
-    border: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-
-}
-.card.horizontal.small {
-    border: 5px solid #a0a9ff;
-    background-color: #3f489a;
-    color: white;
-    -webkit-box-shadow: 3px 3px 3px 3px #080a1f;
 }
 
 .card.horizontal.partida{
@@ -151,32 +138,4 @@ article .card-info{
 
 form p{
     padding-left: 0.8rem;
-}
-.row {
-    box-shadow: none;
-    -webkit-box-shadow: 5px 5px 8px 5px #080a1f;
-    border: 10px solid #a0a9ff;
-    border-radius: 10px;
-    background-color: #3f489a;
-
-}
-h3 {
-    border: 5px solid #a0a9ff;
-    border-radius: 10px;
-    background-color: #3f489a;
-    color: white;
-    -webkit-box-shadow: 3px 3px 3px 3px #080a1f;
-}
-
-header {
-    text-align: center;
-    color: white;
-}
-header h1{
-    font-weight: bolder;
-    color: white;
-}
-
-.card-content h4 {
-    font-weight: bolder;
 }

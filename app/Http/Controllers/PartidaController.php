@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Partida;
 use App\Http\Requests\PartidaRequest;
@@ -23,7 +24,6 @@ class PartidaController extends Controller
      */
     public function index()
     {
-
         //Obtengo las noticias a mostrar en la home
         $rowset = Partida::orderBy('tiempo', 'ASC')
             ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
@@ -33,6 +33,17 @@ class PartidaController extends Controller
         ]);
     }
 
+    public function misPartidas($slug)
+    {
+        //Obtengo la Partida o muestro error
+        $rowset = Partida::orderBy('tiempo', 'ASC')->firstOrFail()
+            ->join('usuarios', 'usuarios.email', '=', 'partidas.usuario')
+            ->where('usuarios.slug' ,$slug)
+            ->get();
+        return view('admin.partidas.misPartidas',[
+            'rowset' => $rowset,
+        ]);
+    }
     /**
      * Mostrar el formulario para crear un nuevo elemento
      *
@@ -41,6 +52,7 @@ class PartidaController extends Controller
     public function crear()
     {
         //Creo un nuevo usuario vacío
+        $row = new Partida();
         $row = new Partida();
 
         return view('admin.partidas.editar',[
@@ -71,7 +83,7 @@ class PartidaController extends Controller
             Partida::where('id', $row->id)->update(['imagen' => $nombre]);
             $texto = " e imagen subida.";
         }
-       else{
+        else{
             $texto = ".";
         }
         return redirect('admin/partidas')->with('success', 'Partida <strong>'.$request->usuario.'</strong> creada'.$texto);
@@ -149,7 +161,7 @@ class PartidaController extends Controller
     {
         $row = Partida::findOrFail($id);
         Partida::destroy($row->id);
-        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->titulo.'</strong> borrada.');
+        return redirect('admin/partidas')->with('success', 'Partida <strong>'.$row->usuario.'</strong> borrada Correctamente.');
     }
     //Función para generar el slug a partir de un string
     public function getSlug($str){
@@ -190,9 +202,7 @@ class PartidaController extends Controller
             'z', 'Z', 'z', 's', 'f', 'O', 'o', 'U', 'u', 'A', 'a', 'I',
             'i', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U',
             'u', 'A', 'a', 'AE', 'ae', 'O', 'o');
-
         $sin_acentos = str_replace($a, $b, $str);
-
         //genero slug
         return mb_strtolower(preg_replace(array('/[^a-zA-Z0-9 -]/', '/[ -]+/', '/^-|-$/'), array('', '-', ''), $sin_acentos),'UTF-8');
     }
