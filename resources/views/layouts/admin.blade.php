@@ -24,7 +24,7 @@
     <div class="nav-wrapper">
         <!--Logo-->
         <a href="{{ route('home') }}" class="brand-logo" title="Inicio">
-            {{ Html::image('img/pacman.svg', 'Logo Pacman') }}
+            {{ Html::image('img/titulopacman.png', 'Logo Pacman') }}
         </a>
 
         <!--Botón menú móviles-->
